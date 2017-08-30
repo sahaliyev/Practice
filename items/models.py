@@ -4,11 +4,25 @@ from django.conf import settings
 from .helper import resize
 from django.core.files import File
 
+
 Choice = (
 (1, 'Kishi ucun'),
 (2, 'Qadin ucun'),
 (3, 'Ushaq ucun')
 )
+
+class Product(models.Model):
+    title = models.CharField(max_length=200)
+    price = models.IntegerField()
+    description = models.CharField(max_length=2000)
+    madein = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to='image/',null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+
 class IntegerRangeField(models.IntegerField):
 
     def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
@@ -31,6 +45,7 @@ class UploadPicture(models.Model):
     thumb_image = models.ImageField(upload_to='thumb_image/',null=True, blank=True, editable=False)
     slider_image = models.ImageField(upload_to='slider_image/',null=True, blank=True, editable=False)
     post_image = models.ImageField(upload_to='post_image/',null=True, blank=True, editable=False)
+    status = models.BooleanField(default=False)
     choose = models.IntegerField(choices=Choice, default=1)
     #fileinstance , signal
     def __str__(self):
