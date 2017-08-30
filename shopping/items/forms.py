@@ -1,7 +1,18 @@
 from django import forms
+from django.contrib.auth.models import User
+from .models import UploadPicture
 
-class Form(forms.Form):
-    name = forms.CharField(label='Name', max_length=100)
-    email = forms.EmailField(label='Email Address')
-    subject = forms.CharField(label='Subject', max_length=20)
-    message = forms.CharField(widget=forms.Textarea, label='Message', max_length=2000)
+class ProductForm(forms.Form):
+    title = forms.CharField(max_length=200)
+    price = forms.CharField(max_length=200)
+    description = forms.CharField(max_length=200)
+    madein = forms.CharField(max_length=200)
+    image = forms.FileField()
+    # class Meta:
+    #     model=UploadPicture
+    #     fields = ['title', 'price', 'description', 'madein', 'image']
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','last_name', 'email', 'password']

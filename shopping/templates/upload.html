@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block pics %} {% endblock %}
+{% block title%} <title>Upload</title> {% endblock %}
+{% block css %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/upload.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/animate-custom.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+<br><br><hr>
+<body>
+      <div class="container">
+          <section>
+              <div id="container_demo" >
+                  <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+
+                  <div id="wrapper">
+
+                    <div id="register" class="animate form">
+                        <form method='post' autocomplete="off">
+                           <h1>Add product</h1>
+                           {% csrf_token %}
+                           {{ form }}
+
+                            <!-- <p>
+                                <label  for="usernamesignup" class="uname">Name of product</label>
+                                <input id="usernamesignup" name="title" required="required" type="text" placeholder="" />
+                            </p>
+                            <p>
+                                <label  for="userlastnamesignup" class="uname">Price</label>
+                                <input id="userlastnamesignup" name="price" required="required" type="text" placeholder="" />
+                            </p>
+                            <p>
+                                <label  for="emailsignup" class="youmail" > Description</label>
+                                <input id="emailsignup" name="description" required="required" type="text" placeholder=""/>
+                            </p>
+                            <p>
+                                <label  for="passwordsignup" class="youpasswd" >Made in</label>
+                                <input id="passwordsignup" name="madein" required="required" type="text" placeholder=""/>
+                            </p>
+                            <p>
+                                <label  for="passwordsignup" class="youpasswd" >Picture</label>
+                                <input id="passwordsignup" name="image" required="required" type="file" placeholder=""/>
+                            </p> -->
+                            <!--
+                            <p>
+                                <label  for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                                <input id="passwordsignup_confirm" name="cpassword" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                            </p> -->
+                            <p class="signin button">
+                              <input type="submit" value="Paylash"/>
+                            </p>
+
+                        </form>
+                    </div>
+
+                  </div>
+              </div>
+          </section>
+      </div>
+</body>
+<br><hr>
+{% endblock %}

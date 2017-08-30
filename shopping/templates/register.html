@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block pics %} {% endblock %}
+{% block title%} <title>Register</title> {% endblock %}
+{% block css %}
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/animate-custom.css' %}" />
+
+{% endblock %}
+
+{% block content%}
+<br><br>
+<hr>
+<body>
+      <div class="container">
+          <section>
+              <div id="container_demo" >
+                  <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                  <a class="hiddenanchor" id="toregister"></a>
+                  <a class="hiddenanchor" id="tologin"></a>
+                  <div id="wrapper">
+
+                    <div id="register" class="animate form">
+                        <form method='post' autocomplete="off">
+                           {% csrf_token %}
+                            <h1> Sign up </h1>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="help-block text-danger">
+                              {{ message }}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <p>
+                                <label  for="usernamesignup" class="uname" data-icon="u">Name</label>
+                                <input id="usernamesignup" name="username" required="required" type="text" placeholder="" />
+                            </p>
+                            <p>
+                                <label  for="userlastnamesignup" class="uname" data-icon="u">Last name</label>
+                                <input id="userlastnamesignup" name="last_name" required="required" type="text" placeholder="" />
+                            </p>
+                            <p>
+                                <label  for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                                <input id="emailsignup" name="email" required="required" type="email" placeholder="mysupermail@mail.com"/>
+                            </p>
+                            <p>
+                                <label  for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                                <input id="passwordsignup" name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                            </p>
+                            <!-- <p>
+                                <label  for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                                <input id="passwordsignup_confirm" name="cpassword" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                            </p> -->
+                            <p class="signin button">
+              <input type="submit" value="Sign up"/>
+            </p>
+                            <p class="change_link">
+              Already a member ?
+              <a href="{% url 'log' %}" class="to_register"> Go and log in </a>
+            </p>
+                        </form>
+                    </div>
+
+                  </div>
+              </div>
+          </section>
+      </div>
+</body>
+{% endblock%}
