@@ -26,6 +26,7 @@
         <ul>
           <li>Qiymət: {{price.price}} &#8380;</li>
           <li>Made in: {{price.madein}}</li>
+          <li>Elave eden: {{ price.author.username }}  {{ price.author.last_name}}</li>
           <li>Əlavə olundu: {{price.time|date:"F d, Y" }}</li>
         </ul>
       </div>

@@ -3,6 +3,8 @@ import os
 from django.conf import settings
 from .helper import resize
 from django.core.files import File
+from django.contrib.auth.models import User
+
 
 
 Choice = (
@@ -39,6 +41,7 @@ class UploadPicture(models.Model):
     price = models.IntegerField()
     description = models.CharField(max_length=2000)
     madein = models.CharField(max_length=200, null=True, blank=True)
+    author = models.ForeignKey(User, null=True, blank=True)
     star = IntegerRangeField(min_value=1, max_value=5,  null=True, blank=True)
     time = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='image/',null=True, blank=True)

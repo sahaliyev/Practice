@@ -20,9 +20,29 @@
                   <div id="wrapper">
 
                     <div id="register" class="animate form">
-                        <form method='post' autocomplete="off">
+                        <form method='post' autocomplete="off" enctype="multipart/form-data">
                            <h1>Add product</h1>
                            {% csrf_token %}
+                           {% if messages %}
+                           {% for message in messages %}
+                           {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                           <div class='alert alert-success alert-dismissable fade show'>
+                                 {{ message }}
+                           </div>
+                           {% endif %}
+                           {% endfor %}
+                           {% endif %}
+
+                           {% if messages %}
+                           {% for message in messages %}
+                           {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                           <div class="help-block text-danger">
+                             {{ message }}
+                           </div>
+                           {% endif %}
+                           {% endfor %}
+                           {% endif %}
+
                            {{ form }}
 
                             <!-- <p>

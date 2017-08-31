@@ -15,7 +15,7 @@ from django.contrib import messages
 def index(request):
     data = {}
     data['title'] = UploadPicture.objects.all()
-    title = UploadPicture.objects.filter().order_by('-time')
+    title = UploadPicture.objects.filter(status=True).order_by('-time')
     paginator = Paginator(title, 6)
 
     page = request.GET.get('page')
@@ -161,12 +161,26 @@ def upload(request):
     if request.method=='POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('/')
-    #     else:
-    #         return redirect('/')
-    # else:
-    #     context['form'] = ProductForm()
+            data = UploadPicture(
+                title=form.cleaned_data['title'],
+                price=form.cleaned_data['price'],
+                description=form.cleaned_data['description'],
+                madein=form.cleaned_data['madein'],
+                image=request.FILES.get('image'),
+                author=request.user,
+            )
+            data.save()
+            messages.success(
+            request, "Your product will be shared after review of admin. Thank you for your understanding!"
+            )
+            return redirect('/upload/')
+        else:
+            messages.error(
+            request, "Something is wrong"
+            )
+            return redirect('/upload/')
+    else:
+        context['form'] = ProductForm()
 
     if request.user.is_authenticated:
         return render(request, 'upload.html', context)

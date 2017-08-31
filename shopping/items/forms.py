@@ -4,10 +4,10 @@ from .models import UploadPicture
 
 class ProductForm(forms.Form):
     title = forms.CharField(max_length=200)
-    price = forms.CharField(max_length=200)
+    price = forms.IntegerField()
     description = forms.CharField(max_length=200)
     madein = forms.CharField(max_length=200)
-    image = forms.FileField()
+    image = forms.FileField(required=False)
     # class Meta:
     #     model=UploadPicture
     #     fields = ['title', 'price', 'description', 'madein', 'image']
